@@ -1,0 +1,29 @@
+version: '3.4'
+
+networks:
+  bulkybookapp:
+
+services:
+  bulkybookdb:
+    container_name: bulky-book-db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8002:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password@12345#
+    networks:
+      - bulkybookapp
+
+  bulkybookapi:
+    container_name: bulky-book-api
+    image: ${DOCKER_REGISTRY-}bulkybookapi
+    build:
+      context: .
+      dockerfile: BulkyBookAPI/Dockerfile
+    ports:
+      - "8001:80"
+    depends_on:
+      - bulkybookdb
+    networks:
+      - bulkybookapp

@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="wwwroot\Reports\rptCategoryReport.rdlc" />
+		<Content Remove="wwwroot\Reports\rptChartReport.rdlc" />
+		<Content Remove="wwwroot\Reports\rptControlsDemo.rdlc" />
+		<Content Remove="wwwroot\Reports\rptEmployeeReport.rdlc" />
+		<Content Remove="wwwroot\Reports\rptListControl.rdlc" />
+		<Content Remove="wwwroot\Reports\rptMatrixReport.rdlc" />
+	</ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.WindowsDesktop.App" />
+		<!--<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<FrameworkReference Include="Microsoft.WindowsDesktop.App" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="wwwroot\Reports\rptCategoryReport.rdlc" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="wwwroot\Reports\rptCategoryReport.rdlc" />
+		<EmbeddedResource Include="wwwroot\Reports\rptChartReport.rdlc" />
+		<EmbeddedResource Include="wwwroot\Reports\rptListControl.rdlc" />
+		<EmbeddedResource Include="wwwroot\Reports\rptControlsDemo.rdlc" />
+		<EmbeddedResource Include="wwwroot\Reports\rptEmployeeReport.rdlc" />
+		<EmbeddedResource Include="wwwroot\Reports\rptMatrixReport.rdlc" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0-preview.7.21378.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+		<PackageReference Include="ReportViewerCore.NETCore" Version="15.1.17" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BulkyBook.DataAccess\BulkyBook.DataAccess.csproj" />
+		<ProjectReference Include="..\BulkyBook.ReportModel\BulkyBook.ReportModel.csproj" />
+	</ItemGroup>
+
+</Project>
