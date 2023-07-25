@@ -27,3 +27,13 @@ services:
       - bulkybookdb
     networks:
       - bulkybookapp
+
+  bulkybookui:
+    container_name: bulky-book-ui
+    build:
+      context: ./BulkyBook.UI  # Set the correct build context for the Angular app
+      dockerfile: Dockerfile
+    ports:
+      - "3800:80"
+    networks:
+      - bulkybookapp
