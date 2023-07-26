@@ -8,7 +8,7 @@ services:
     container_name: bulky-book-db
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
-      - 8002:1433
+      - 8001:1433
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=password@12345#
@@ -22,7 +22,8 @@ services:
       context: .
       dockerfile: BulkyBookAPI/Dockerfile
     ports:
-      - "8001:80"
+      - "8002:80"
+      - "8003:443"
     depends_on:
       - bulkybookdb
     networks:
@@ -31,9 +32,10 @@ services:
   bulkybookui:
     container_name: bulky-book-ui
     build:
-      context: ./BulkyBook.UI  # Set the correct build context for the Angular app
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: BulkyBookUI/Dockerfile
     ports:
-      - "3800:80"
+      - 8004:80
+      - 8005:443
     networks:
       - bulkybookapp
